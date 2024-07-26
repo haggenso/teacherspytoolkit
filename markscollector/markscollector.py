@@ -1,6 +1,6 @@
 """
 Collect student details and marks from all the *.xlsx files in a directory
-Using xlwings library that can read calculate results from formulae
+Using xlwings library that can read calculated results from formulae
 """
 
 import xlwings as xw

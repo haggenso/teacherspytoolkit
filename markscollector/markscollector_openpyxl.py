@@ -1,6 +1,6 @@
 """
 Collect student details and marks from all the *.xlsx files in a directory
-Using openpyxl but it can only read the value of very simple calcuated cell
+Using openpyxl but it can only read values of very simple calcuated cells
 Even =SUM(...) does not work :'(
 Ref: https://stackoverflow.com/questions/23350581/openpyxl-1-8-5-reading-the-result-of-a-formula-typed-in-a-cell-using-openpyxl
 
