@@ -4,12 +4,15 @@ This program read in class roster from the file "classroster.csv" with the forma
 StudID	StudName	Class
 A001	Name1	A
 
-The Excel template is in the file "marksheet_template.xlsx". 
+The Excel template is in the file "marksheet_template.xlsx".
+You can also switch between sheetw with the statement
+ws = wb[sheets[0]]
+
+Ref: https://stackoverflow.com/questions/45756731/how-to-switch-between-sheets-in-excel-openpyxl-python-to-make-changes?rq=1
 
 """
 
 from openpyxl import load_workbook
-from openpyxl import Workbook
 import pandas as pd
 
 # Read Student Roster
@@ -22,6 +25,8 @@ for index, row in df.iterrows():
 
 	# Read xlsx
 	wb = load_workbook(filename = 'marksheet_template.xlsx')
+	sheets = wb.sheetnames
+	ws = wb[sheets[0]]
 	ws = wb.active
 	# print(ws)
 
