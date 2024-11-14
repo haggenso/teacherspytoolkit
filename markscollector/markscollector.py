@@ -1,39 +1,41 @@
 """
 Collect student details and marks from all the *.xlsx files in a directory
-Using xlwings library that can read calculated results from formulae
+Using openpyxl 
 """
 
-import xlwings as xw
+from openpyxl import load_workbook
 import pandas as pd
 import os
 
-df = pd.DataFrame(columns=['StudID','StudName','Class','Mark'])
-i = 0
+sheet_cond = "Ass1.xlsx"
+mark_filename = "StudMark.xlsx"
 
 directory = os.fsencode(".")
-    
+
+df = pd.DataFrame(columns=['StudID','StudName','Class','Mark'])
+i = 0    
 for file in os.listdir(directory):
 	filename = os.fsdecode(file)
-	if filename.endswith(".xlsx"):
-		print (filename)
+	if filename.endswith(sheet_cond):
+		print ('Collecting Total: ' + filename)
 
 		# Read xlsx
-		wb = xw.Book(filename)
-        #app = xw.apps.active
-		sht = xw.sheets.active
+		wb = load_workbook(filename = filename, data_only=True)
+		ws = wb.active
 		#print (ws['B1'].value)
 		
 		row = []
-		row.append(sht.range('B1').value)
-		row.append(sht.range('B2').value)
-		row.append(sht.range('B3').value)
-		row.append(sht.range('B10').value)
-        #app.quit()
+		row.append(ws['B2'].value)
+		row.append(ws['B1'].value)
+		row.append(ws['D2'].value)
+		row.append(ws['D9'].value)
 		df.loc[i] = row
 		i += 1
+		wb.close()
 	
 #print(df)
-df.to_csv('StudMark.csv')
+#df.to_csv(mark_filename)
+df.to_excel(mark_filename)
 		
 		
       

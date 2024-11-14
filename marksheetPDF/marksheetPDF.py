@@ -17,6 +17,9 @@ import re
 import time
 
 pdfrel = "pdf"
+sheet_cond = "Ass1.xlsx"
+wait_time = 0.5
+
 directory = os.fsencode(".")
 curdir = os.getcwd()
 pdfabs = os.path.join(curdir, pdfrel)
@@ -25,7 +28,7 @@ if not os.path.exists(pdfabs):
     
 for file in os.listdir(directory):
 	filename = os.fsdecode(file)
-	if filename.endswith(".xlsx"):
+	if filename.endswith(sheet_cond):
 		print (filename)
 
 		# Read xlsx
@@ -41,8 +44,8 @@ for file in os.listdir(directory):
 		#wb.api.ExportAsFixedFormat(0, filepdf)
 		sheet.to_pdf(path=filepdf)        
         
-		time.sleep(0.5)
+		time.sleep(wait_time)
 		wb.app.quit()
-		time.sleep(0.5)
+		time.sleep(wait_time)
 	
 #print(df)
